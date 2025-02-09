@@ -1,0 +1,6 @@
+colorscheme gruvbox
+set dotfiles
+set vicmd=nvim
+
+filetype *.jpg,*.jpeg,*.png,*.gif,*.bmp,*.webp
+    \ {View in feh} feh --scale-down --auto-zoom --fullscreen --borderless %
