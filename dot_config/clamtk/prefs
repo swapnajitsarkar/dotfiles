@@ -1,0 +1,13 @@
+DupeDB=1
+Thorough=0
+ScanHidden=1
+SizeLimit=0
+TruncateLog=1
+Heuristic=1
+LastInfection=05 Feb 2025
+GUICheck=1
+HTTPProxy=0
+Mounted=0
+Update=shared
+Whitelist=
+Recursive=1

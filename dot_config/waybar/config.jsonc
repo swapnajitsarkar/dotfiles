@@ -1,0 +1,171 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top", // Waybar at top layer
+  //"position": "top", // Waybar position (top|bottom|left|right)
+  //"height": 40, // Waybar height (to be removed for auto height)
+  //"width": 1280, // Waybar width
+  "spacing": 6, // Gaps between modules (px)
+    // Choose the order of the modules
+  "modules-left": [
+    "custom/paru",
+    "hyprland/window",
+    "mpris"
+  ],
+  
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  
+  "modules-right": [
+    "wlr/taskbar",
+    "tray",
+    "keyboard-state",
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "custom/gpu",
+    "temperature",
+    "clock"
+  ],
+
+  "custom/paru": {
+    "exec": "$HOME/.config/waybar/scripts/paru.sh",
+    "return-type": "json",
+    "interval": 3600,
+    "format": " {}",
+    "on-click": "kitty --class floating-paru sh -c 'paru -Syu; read -p \"Press Enter to close...\"'",
+    "signal": 8
+  },
+    
+  "hyprland/workspaces": {
+	  "persistent-workspaces": {
+      "HDMI-A-1": [ 1, 2, 3, 4, 5 ], // workspace 1 shown on DP-3
+     	"eDP-1": [ 6, 7, 8, 9, 10 ] // workspaces 2 and 3 shown on DP-1
+    },
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "empty": "",
+      "default": ""
+    }
+  },
+  
+  "hyprland/window": {
+   	"format": "{}",  // This shows the window title
+   	"separate-outputs": true,  // Handles multiple displays separately
+   	//"max-length": 50  // Limits title length to prevent overflow
+    "rewrite": {
+      "^$": "Hyprland"
+    }
+	},
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 16,
+    "icon-theme": "Yaru",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    //"on-click-middle": "close",
+    "ignore-list": [
+       "kitty"
+    ],
+    "rewrite": {
+        "Firefox Web Browser": "Firefox",
+        "Kitty": "Terminal"
+    }
+  },
+  "custom/gpu":{
+    "exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+    "exec-alt": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
+    "return-type": "",
+    "interval": 1,
+    "format": "󰢮  {}"
+  },
+
+  "tray": {
+    "icon-theme": "Yaru",
+    "icon-size": 16,
+    "spacing": 6
+  },
+  
+  "clock": {
+    "timezone": "Asia/Kolkata",
+	  "format": "{:%I:%M %p}",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+
+  "cpu": {
+    "format": "  {usage}",
+    "interval": 1
+  },
+  
+  "memory": {
+    "format": "  {}",
+	  "interval": 1
+  },
+    
+  "temperature": {
+    "thermal-zone": 11,
+    //"hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input",
+	  "interval": 1,
+    //"critical-threshold": 95,
+    //"format-critical": "{temperatureC}°C {icon}",
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
+   
+  "network": {
+    //"interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "  {signalStrength}",
+    "format-ethernet": "󰈀 {ipaddr}/{cidr}",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": " Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  
+  "pulseaudio": {
+    //"scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "mpris": {
+	  "format": "{player_icon} {title}",
+	  "format-paused": "{status_icon} <i>{title}</i>",
+	  "player-icons": {
+		"default": "󰐊",
+	  },
+	  "status-icons": {
+		"paused": "󰏤"
+	  },
+    //"max-length": 30
+
+  },
+  
+  "keyboard-state": {
+    "capslock": true,
+    "format": {
+      "capslock": "󰪛 {icon}"                                                                                                                                                       
+    },
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+}

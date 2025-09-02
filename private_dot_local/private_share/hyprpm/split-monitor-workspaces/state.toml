@@ -1,0 +1,10 @@
+[repository]
+hash = 'c75ec3a643a98169acdea03336c06f3656fe0e76'
+name = 'split-monitor-workspaces'
+rev = ''
+url = 'https://github.com/Duckonaut/split-monitor-workspaces'
+
+[split-monitor-workspaces]
+enabled = false
+failed = false
+filename = 'split-monitor-workspaces.so'

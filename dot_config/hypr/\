@@ -1,0 +1,4 @@
+preload = $HOME/.config/hypr/walls/sushi.jpg
+preload = $HOME/.config/hypr/walls/sushi.jpg
+wallpaper = HDMI-A-1,$HOME/.config/hypr/walls/sushi.jpg
+wallpaper = eDP-1,$HOME/.config/hypr/walls/sushi.jpg
